@@ -5,48 +5,55 @@ FILENAME = "listes.csv"
 #### Fonctions secondaires
 
 def read_data(filename):
-    """retourne le contenu du fichier <filename>
+    """retourne le contenu du fichier <filename>"""
+    with open(filename, "r", encoding="utf8") as f:
+        lines = f.readlines()
 
-    Args:
-        filename (str): nom du fichier à lire
-
-    Returns:
-        list: le contenu du fichier (1 list par ligne)
-    """
-    l = []
+    # conversion en liste de listes d'entiers
+    l = [[int(x) for x in line.strip().split(";")] for line in lines if line.strip()]
     return l
 
+
+
 def get_list_k(data, k):
-    l = []
+    """retourne la k-ième liste de data"""
+    l = data[k]
     return l
 
 def get_first(l):
-    return None
+    """retourne le premier élément d'une liste"""
+    return l[0]
 
 def get_last(l):
-    return None
+    """retourne le dernier élément d'une liste"""
+    return l[-1]
 
 def get_max(l):
-    return None
+    """retourne le maximum d'une liste"""
+    return max(l)
 
 def get_min(l):
-    return None
+    """retourne le minimum d'une liste"""
+    return min(l)
 
 def get_sum(l):
-    return None
-
+    """retourne la somme des éléments d'une liste"""
+    return sum(l)
 
 #### Fonction principale
 
 
 def main():
-    pass
-    # data = read_data(FILENAME)
-    # for i, l in enumerate(data):
-    #     print(i, l)
-    # k = 37
-    # print(k, get_list_k(data, 37))
-
+    data = read_data(FILENAME)
+    for i, l in enumerate(data[:5]):  # affiche les 5 premières lignes pour test
+        print(i, l)
+    k = 0
+    print(k, get_list_k(data, k))
+    print("Premier élément :", get_first(data[k]))
+    print("Dernier élément :", get_last(data[k]))
+    print("Max :", get_max(data[k]))
+    print("Min :", get_min(data[k]))
+    print("Somme :", get_sum(data[k]))
 
 if __name__ == "__main__":
     main()
